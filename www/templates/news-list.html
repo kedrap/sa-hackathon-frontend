@@ -1,7 +1,8 @@
 <ion-view>
     <ion-content>
-        <ion-list ng-if="items">
-            <ion-item ng-repeat="item in items">
+        <div ng-if="items">
+            <div ng-repeat="item in items" class="list card news-item" ng-class="{'dislike' : item.dislike, 'like' : item.like}"
+                 on-swipe-left="dislike(item)" on-swipe-right="like(item)">
                 <div class="item item-body">
                     <img class="full-image" ng-src="{{item.image}}">
 
@@ -13,18 +14,17 @@
                         {{item.description}}
                     </p>
                 </div>
-
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item" href="#" ng-click="like(item)" ng-class="{'positive' : item.like }">
-                        <i class="icon ion-thumbsup"></i>
-                        Like
-                    </a>
+                <div class="item tabs">
                     <a class="tab-item" href="#" ng-click="dislike(item)" ng-class="{'positive' : item.dislike }">
                         <i class="icon ion-thumbsdown"></i>
                         Dislike
                     </a>
+                    <a class="tab-item" href="#" ng-click="like(item)" ng-class="{'positive' : item.like }">
+                        <i class="icon ion-thumbsup"></i>
+                        Like
+                    </a>
                 </div>
-            </ion-item>
-        </ion-list>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
