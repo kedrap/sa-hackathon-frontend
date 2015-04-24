@@ -1,8 +1,21 @@
 angular.module('newser.controller', [])
-    .controller('NewsListCtrl', function ($scope, DataService) {
-        $scope.items = ['TODO #1', 'TODO #2', '#Jeba*Biede'];
+    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService) {
+        $scope.items = null;
+        $ionicLoading.show();
 
-        console.log(DataService.fetch(function(response, status){
+        DataService.fetch(function (response) {
             $scope.items = response;
-        }));
+
+            $ionicLoading.hide();
+        });
+
+        $scope.like = function(item) {
+            item.like = true;
+            item.dislike = false;
+        };
+
+        $scope.dislike = function(item) {
+            item.like = false;
+            item.dislike = true;
+        }
     });
