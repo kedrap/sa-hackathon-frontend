@@ -37,9 +37,7 @@ angular.module('newser.service', [])
                     }).success(callback || angular.noop);
                 },
                 pushEvent: function (event) {
-                    $http.post(apiUrl, {
-                        event: event
-                    }).success(function (response, status) {
+                    $http.post(apiUrl, event).success(function (response, status) {
                         console.log(arguments, 'data sent');
                     }).error(function () {
                         console.log(arguments, 'data error');
