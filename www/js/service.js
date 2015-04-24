@@ -28,7 +28,7 @@ angular.module('newser.service', [])
     })
     .factory('DataService', function ($http) {
         var mockData = 'data_v1.json',
-            apiUrl = 'http://mockApi.com',
+            apiUrl = 'http://backend.mysql5.pl/api/events',
             service = {
                 fetch: function (callback) {
                     var res = $http({
