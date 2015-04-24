@@ -40,9 +40,9 @@ angular.module('newser.service', [])
                     $http.post(apiUrl, {
                         event: event
                     }).success(function (response, status) {
-                        console.log('data sent');
+                        console.log(arguments, 'data sent');
                     }).error(function () {
-                        console.log(arguments);
+                        console.log(arguments, 'data error');
                     });
                 }
             };
