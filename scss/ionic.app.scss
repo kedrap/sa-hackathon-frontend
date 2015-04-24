@@ -21,3 +21,46 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+@-webkit-keyframes likeAnimation {
+  0% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) scale(1) ;
+  }
+  70% {
+    -webkit-transform: translate(200px, 100px) rotate(40deg) scale(0.8);
+  }
+  100% {
+    -webkit-transform: translate(200px, 100px) rotate(40deg) scale(0);
+    height: 0;
+    width: 0;
+  }
+}
+
+@-webkit-keyframes dislikeAnimation {
+  0% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) scale(1) ;
+  }
+  70% {
+    -webkit-transform: translate(-200px, 100px) rotate(-40deg) scale(0.8);
+  }
+  100% {
+    -webkit-transform: translate(-200px, 100px) rotate(-40deg) scale(0);
+    height: 0;
+    width: 0;
+  }
+}
+
+.like {
+  animation: likeAnimation linear 0.5s;
+  animation-iteration-count: 1;
+  -webkit-animation: likeAnimation linear 0.5s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.dislike {
+  animation: dislikeAnimation linear 0.5s;
+  animation-iteration-count: 1;
+  -webkit-animation: dislikeAnimation linear 0.5s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+}
