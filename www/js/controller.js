@@ -5,15 +5,15 @@ angular.module('newser.controller', [])
 
         UserService.idUser();
 
-        DataService.fetch(function (response) {
-            $scope.items = response;
-
-            $ionicLoading.hide();
-        });
-
         $scope.fetchItem = function() {
+            $ionicLoading.show();
+            DataService.fetchUniqueItem(function (item) {
+                $scope.item = item;
 
-            TimerService.startTimer();
+                TimerService.startTimer();
+
+                $ionicLoading.hide();
+            });
         };
 
         var deleteItem = function (item) {
