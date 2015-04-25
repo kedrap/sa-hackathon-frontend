@@ -1,5 +1,5 @@
 angular.module('newser.controller', [])
-    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService, UserService) {
+    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService, UserService, TimerService) {
         $scope.items = null;
         $ionicLoading.show();
 
@@ -13,6 +13,7 @@ angular.module('newser.controller', [])
 
         $scope.fetchItem = function() {
 
+            TimerService.startTimer();
         };
 
         var deleteItem = function (item) {
@@ -34,7 +35,7 @@ angular.module('newser.controller', [])
                 hash: item.hash,
                 user: UserService.getUserId(),
                 decision: 'skip',
-                time: Math.floor((Math.random() * 10) + 1),
+                time: TimerService.getTimeSpentReading(),
                 title: item.title
             };
 
@@ -52,7 +53,7 @@ angular.module('newser.controller', [])
                 hash: item.hash,
                 user: UserService.getUserId(),
                 decision: 'like',
-                time: Math.floor((Math.random() * 10) + 1),
+                time: TimerService.getTimeSpentReading(),
                 title: item.title
             };
 
@@ -70,12 +71,14 @@ angular.module('newser.controller', [])
                 hash: item.hash,
                 user: UserService.getUserId(),
                 decision: 'dislike',
-                time: Math.floor((Math.random() * 10) + 1),
+                time: TimerService.getTimeSpentReading(),
                 title: item.title
             };
 
             deleteItem(item);
 
             DataService.pushEvent(event);
-        }
+        };
+
+        $scope.fetchItem();
     });

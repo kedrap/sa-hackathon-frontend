@@ -1,4 +1,19 @@
 angular.module('newser.service', [])
+    .factory('TimerService', function () {
+        var service = {
+            startTimer: function () {
+                window.timer = new Date();
+            },
+            getTimeSpentReading: function () {
+                var curTime = new Date(),
+                    timeSpent = curTime - window.timer;
+
+                return timeSpent/1000;
+            }
+        };
+
+        return service;
+    })
     .factory('UserService', function () {
         var service = {
             hashCode: function (seed) {
@@ -7,9 +22,9 @@ angular.module('newser.service', [])
                 for (i = 0, len = seed.length; i < len; i++) {
                     chr = seed.charCodeAt(i);
                     hash = ((hash << 5) - hash) + chr;
-                    hash |= 0; // Convert to 32bit integer
+                    hash |= 0;
                 }
-                return hash;
+                return Math.abs(hash);
             },
             getUserId: function () {
                 return JSON.parse(window.localStorage.newster).uuid;
@@ -42,9 +57,9 @@ angular.module('newser.service', [])
                         url: apiUrl,
                         method: 'POST',
                         data: event,
-                        transformRequest: function(obj) {
+                        transformRequest: function (obj) {
                             var str = [];
-                            for(var p in obj)
+                            for (var p in obj)
                                 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                             return str.join("&");
                         },
