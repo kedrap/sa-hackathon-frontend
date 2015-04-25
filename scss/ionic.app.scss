@@ -22,6 +22,8 @@ $skip: #898989;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
+$bar-height: 55px;
+
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
@@ -35,16 +37,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .content {
     margin: 0.3em 20px;
     font-family: 'Lato', sans-serif;
+    font-size: 14px;
 
     img {
-      display: block;
-      margin: 5px auto;
+      display: none;
     }
   }
 
   .title {
     font-family: 'Playfair Display', serif;
-    font-size: 25px;
+    font-size: 27px;
     color: #000;
     font-weight: bold;
     line-height: 26px;
@@ -54,18 +56,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
   .lead {
     font-family: 'Lato', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 30px;
-  }
-
-  h1 {
-    font-size: 1.2em;
   }
 
   &.like {
     .likeDescription {
       display: block;
       background: rgba($like, 0.33);
+
+      i {
+        background-position: -250px -135px;
+      }
     }
   }
 
@@ -73,6 +75,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     .dislikeDescription {
       display: block;
       background: rgba($dislike, 0.33);
+
+      i {
+        background-position: -160px -135px;
+      }
     }
   }
 
@@ -96,13 +102,22 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   i {
     font-size: 100px;
     display: block;
-    color: rgba(255, 255, 255, 0.9);
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    height: 80px;
+    width: 84px;
+    background: url(/img/sprite-main.png) -165px -135px no-repeat;
+    background-size: 344px 237px;
   }
 }
 
 .skipButton {
   background: $skip;
-  width: 20%;
+  width: 15%;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -112,6 +127,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .icon {
     font-size: 20px;
   }
+
+  span {
+    display: block;
+    padding-top: 5px;
+  }
 }
 
 .likeButton {
@@ -119,13 +139,38 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   width: 45%;
+
+  .icon {
+    margin-right: 3px;
+    position: absolute;
+    top: 0;
+    right: 5px;
+  }
+
+  span {
+    font-size: 16px;
+    display: block;
+    padding-top: 5px;
+  }
 }
 
 .dislikeButton {
   background: $dislike;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-  width: 35%;
+  width: 40%;
+
+  .icon {
+    margin-right: 3px;
+    position: absolute;
+    top: 0;
+    left: 5px;
+  }
+
+  span {
+    display: block;
+    padding-top: 5px;
+  }
 }
 
 .skipButton, .likeButton, .dislikeButton {
@@ -135,34 +180,55 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   -webkit-flex: none;
   max-width: 100%;
   color: #fff;
+  font-size: 15px;
+  font-family: 'Lato', sans-serif;
+  line-height: $bar-height;
 
   .icon {
-    line-height: 40px;
+    line-height: 32px;
+    display: inline-block;
+    font-size: 25px;
+    vertical-align: baseline;
   }
 }
 
 .bar-footer {
-  margin: 0 0 2px;
-  padding: 0;
+  margin: 0;
+  padding: 0 0 2px;
   border: 0;
   background: rgba(255, 255, 255, 0.2);
 }
 
 .article-body {
-  color: #666;
-  font-size: 0.9em;
+  color: #444;
+  font-size: 14px;
 
   h1, h2, h3, h4, h5, h6 {
-    font-size: 1em;
-    color: #333;
+    font-size: 15px;
+    color: #000;
     margin: 0.3em 0;
   }
 
   h1 {
-    font-size: 1.1em;
+    font-size: 16px;
   }
 
   img {
     max-width: 100%;
+  }
+}
+
+.appName {
+  margin: 0 auto;
+  i {
+    background: url(/img/sprite-main.png) 0 -2px no-repeat;
+    width: 120px;
+    height: 40px;
+    display: block;
+    margin: 5px auto;
+    background-size: 100%;
+  }
+  span {
+    display: none
   }
 }
