@@ -1,40 +1,52 @@
 <ion-view>
-    <ion-content>
-        <div ng-if="items">
-            <div ng-repeat="item in items" class="list card news-item" ng-if="!item.deleted"
-                 ng-class="{'dislike' : item.dislike, 'like' : item.like, 'skip': item.skip}"
-                 on-swipe-left="dislike(item)" on-swipe-right="like(item)">
+    <div class="news-item" ng-class="{'dislike' : item.dislike, 'like' : item.like, 'skip': item.skip}"
+         on-swipe-left="dislike(item)" on-swipe-right="like(item)">
 
-                <img class="full-image" ng-src="{{item.image}}">
+        <ion-content delegate-handle="mainScroll">
+            <img class="full-image" ng-src="{{item.image}}">
 
-                <div class="content">
-                    <h1>
-                        {{item.title}}
-                    </h1>
+            <div class="content">
+                <h1>
+                    {{item.title}}
+                </h1>
 
-                    <p>
-                        {{item.description}}
-                    </p>
+                <p>
+                    {{item.description}}
+                </p>
 
-                    <div ng-bind-html="item.detail" class="article-body">
-                    </div>
-                </div>
-
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item" href="#" ng-click="dislike(item)" ng-class="{'positive' : item.dislike }">
-                        <i class="icon ion-thumbsdown"></i>
-                        Dislike
-                    </a>
-
-                    <a class="tab-item" href="#" ng-click="skip(item)" ng-class="{'positive' : item.skip }">
-                        Skip
-                    </a>
-                    <a class="tab-item" href="#" ng-click="like(item)" ng-class="{'positive' : item.like }">
-                        <i class="icon ion-thumbsup"></i>
-                        Like
-                    </a>
+                <div ng-bind-html="item.detail" class="article-body">
                 </div>
             </div>
+        </ion-content>
+
+        <ion-footer-bar align-title="left">
+                <a class="tab-item" href="#" ng-click="dislike(item)" ng-class="{'positive' : item.dislike }">
+                    <i class="icon ion-thumbsdown"></i>
+                    Dislike
+                </a>
+
+                <a class="tab-item" href="#" ng-click="skip(item)" ng-class="{'positive' : item.skip }">
+                    Skip
+                </a>
+                <a class="tab-item" href="#" ng-click="like(item)" ng-class="{'positive' : item.like }">
+                    <i class="icon ion-thumbsup"></i>
+                    Like
+                </a>
+        </ion-footer-bar>
+
+        <div class="likeDescription">
+            <i class="icon ion-thumbsup"></i>
+            <span>Interesting content</span>
         </div>
-    </ion-content>
+
+        <div class="dislikeDescription">
+            <i class="icon ion-thumbsdown"></i>
+            <span>Not interesting content</span>
+        </div>
+
+        <div class="skipDescription">
+            <i class="icon ion-android-refresh"></i>
+            <span>Give me next news</span>
+        </div>
+    </div>
 </ion-view>

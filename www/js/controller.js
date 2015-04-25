@@ -1,32 +1,37 @@
 angular.module('newser.controller', [])
-    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService, UserService, TimerService) {
+    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService, UserService, TimerService, $ionicScrollDelegate) {
         $scope.items = null;
         $ionicLoading.show();
 
         UserService.idUser();
 
-        $scope.fetchItem = function() {
+        $scope.scrollTop = function () {
+            $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
+        };
+
+        $scope.fetchItem = function () {
             $ionicLoading.show();
             DataService.fetchUniqueItem(function (item) {
                 $scope.item = item;
 
                 TimerService.startTimer();
 
+                $scope.scrollTop();
                 $ionicLoading.hide();
             });
         };
 
-        var deleteItem = function (item) {
+        var nextItem = function () {
             setTimeout(function () {
                 $scope.$apply(
                     function () {
-                        item.deleted = true;
+                        $scope.fetchItem();
                     }
                 )
-            }, 200);
+            }, 500);
         };
 
-        $scope.skip = function(item) {
+        $scope.skip = function (item) {
             item.like = false;
             item.dislike = false;
             item.skip = true;
@@ -39,12 +44,12 @@ angular.module('newser.controller', [])
                 title: item.title
             };
 
-            deleteItem(item);
-
             DataService.pushEvent(event);
+
+            nextItem(item);
         };
 
-        $scope.like = function(item) {
+        $scope.like = function (item) {
             item.like = true;
             item.dislike = false;
             item.skip = false;
@@ -57,12 +62,12 @@ angular.module('newser.controller', [])
                 title: item.title
             };
 
-            deleteItem(item);
-
             DataService.pushEvent(event);
+
+            nextItem(item);
         };
 
-        $scope.dislike = function(item) {
+        $scope.dislike = function (item) {
             item.like = false;
             item.dislike = true;
             item.skip = false;
@@ -75,9 +80,9 @@ angular.module('newser.controller', [])
                 title: item.title
             };
 
-            deleteItem(item);
-
             DataService.pushEvent(event);
+
+            nextItem(item);
         };
 
         $scope.fetchItem();
