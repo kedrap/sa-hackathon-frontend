@@ -22,26 +22,28 @@
         <ion-footer-bar align-title="left">
             <a class="tab-item dislikeButton" href="#" ng-click="dislike(item)">
                 <i class="icon ion-ios-undo-outline"></i>
+                <span>Not interesting</span>
             </a>
 
             <a class="tab-item skipButton" href="#" ng-click="skip(item)">
-                <i class="icon ion-android-refresh"></i>
+                <span>Skip</span>
             </a>
             <a class="tab-item likeButton" href="#" ng-click="like(item)">
+                <span>Interesting</span>
                 <i class="icon ion-ios-redo-outline"></i>
             </a>
         </ion-footer-bar>
 
         <div class="likeDescription">
-            <i class="icon ion-thumbsup"></i>
+            <i class="icon"></i>
         </div>
 
         <div class="dislikeDescription">
-            <i class="icon ion-thumbsdown"></i>
+            <i class="icon"></i>
         </div>
 
         <div class="skipDescription">
-            <i class="icon ion-android-refresh"></i>
+            <i class="icon"></i>
         </div>
     </div>
 </ion-view>
