@@ -15,6 +15,10 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$like: #7accc8;
+$dislike: #f26d7d;
+$skip: #898989;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -29,8 +33,31 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     display: block;
   }
   .content {
-    margin: 0.3em 1em;
+    margin: 0.3em 20px;
+    font-family: 'Lato', sans-serif;
+
+    img {
+      display: block;
+      margin: 5px auto;
+    }
   }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    color: #000;
+    font-weight: bold;
+    line-height: 26px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  .lead {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
   h1 {
     font-size: 1.2em;
   }
@@ -38,21 +65,21 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   &.like {
     .likeDescription {
       display: block;
-      color: #7ed100;
+      background: rgba($like, 0.33);
     }
   }
 
   &.dislike {
     .dislikeDescription {
       display: block;
-      color: #ff4400;
+      background: rgba($dislike, 0.33);
     }
   }
 
   &.skip {
     .skipDescription {
       display: block;
-      color: #d2eae8;
+      background: rgba($skip, 0.33);
     }
   }
 }
@@ -60,19 +87,65 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .likeDescription, .dislikeDescription, .skipDescription {
   position: absolute;
   display: none;
-  padding-top: 100px;
+  padding-top: 250px;
   text-align: center;
-  color: white;
-  font-size: 60px;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.9);
-  line-height: 60px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.33);
   height: 100%;
+  width: 100%;
 
   i {
     font-size: 100px;
     display: block;
+    color: rgba(255, 255, 255, 0.9);
   }
+}
+
+.skipButton {
+  background: $skip;
+  width: 20%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+
+  .icon {
+    font-size: 20px;
+  }
+}
+
+.likeButton {
+  background: $like;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  width: 45%;
+}
+
+.dislikeButton {
+  background: $dislike;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  width: 35%;
+}
+
+.skipButton, .likeButton, .dislikeButton {
+  min-width: 20px;
+  opacity: 0.9;
+  flex: none;
+  -webkit-flex: none;
+  max-width: 100%;
+  color: #fff;
+
+  .icon {
+    line-height: 40px;
+  }
+}
+
+.bar-footer {
+  margin: 0 0 2px;
+  padding: 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .article-body {
@@ -87,10 +160,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
   h1 {
     font-size: 1.1em;
-  }
-
-  a {
-    color: orange;
   }
 
   img {
