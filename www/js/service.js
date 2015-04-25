@@ -48,8 +48,7 @@ angular.module('newser.service', [])
         return service;
     })
     .factory('DataService', function ($http, DecisionService) {
-        var mockData = 'data_v1.json',
-            urlBase = 'http://backend.mysql5.pl',
+        var urlBase = 'http://backend.newser.sa.stpdev.io',
             apiUrl = urlBase + '/api/events',
             items = [],
             getUniqueItem = function () {
@@ -96,6 +95,7 @@ angular.module('newser.service', [])
                     image: 'http://lorempixel.com/640/480/cats/'
                 }
             },
+            limit = 20,
             callCounter = 0,
             service = {
                 fetchUniqueItem: function (callback) {
@@ -110,10 +110,20 @@ angular.module('newser.service', [])
                         return;
                     }
 
-                    if (items.length === 0) {
+                    if (Object.keys(items).length === 0) {
+                        var newsterData;
+
+                        try {
+                            newsterData = JSON.parse(window.localStorage.newster);
+                        } catch (e) {
+                            newsterData = {};
+                        }
+
+                        newsterData.alreadyPresentedArticles = newsterData.alreadyPresentedArticles || {};
+
                         $http({
                             method: "GET",
-                            url: mockData
+                            url: urlBase + '/api/snd/articles?limit=' + limit + '&excludeHashes=' + JSON.stringify(newsterData.alreadyPresentedArticles)
                         }).success(function (response) {
                             items = response;
 
