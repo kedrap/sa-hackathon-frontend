@@ -21,100 +21,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-@-webkit-keyframes likeAnimation {
-  0% {
-    -webkit-transform: translate(0px, 0px);
-    -webkit-transform-origin: bottom right;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translate(200px, 0);
-    -webkit-transform-origin: bottom right;
-    opacity: 0.5;
-    height: 0;
-    width: 0;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-@keyframes likeAnimation {
-  0% {
-    transform: translate(0px, 0px);
-    transform-origin: bottom right;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(200px, 0px);
-    transform-origin: bottom right;
-    opacity: 0.5;
-    height: 0;
-    width: 0;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-@-webkit-keyframes dislikeAnimation {
-  0% {
-    -webkit-transform: translate(0px, 0px);
-    -webkit-transform-origin: bottom left;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translate(-200px, 0);
-    -webkit-transform-origin: bottom left;
-    opacity: 0.5;
-    height: 0;
-    width: 0;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-@keyframes dislikeAnimation {
-  0% {
-    transform: translate(0px, 0px);
-    transform-origin: bottom left;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-200px, 0);
-    transform-origin: bottom left;
-    opacity: 0.5;
-    height: 0;
-    width: 0;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.like {
-  animation: likeAnimation linear 0.5s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  -webkit-animation: likeAnimation linear 0.5s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-fill-mode: forwards;
-}
-
-.dislike {
-  animation: dislikeAnimation linear 0.5s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  -webkit-animation: dislikeAnimation linear 0.5s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-fill-mode: forwards;
-}
-
 .news-item {
   margin: 0;
   display: none;
@@ -127,6 +33,45 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   }
   h1 {
     font-size: 1.2em;
+  }
+
+  &.like {
+    .likeDescription {
+      display: block;
+      color: #7ed100;
+    }
+  }
+
+  &.dislike {
+    .dislikeDescription {
+      display: block;
+      color: #ff4400;
+    }
+  }
+
+  &.skip {
+    .skipDescription {
+      display: block;
+      color: #d2eae8;
+    }
+  }
+}
+
+.likeDescription, .dislikeDescription, .skipDescription {
+  position: absolute;
+  display: none;
+  padding-top: 100px;
+  text-align: center;
+  color: white;
+  font-size: 60px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.9);
+  line-height: 60px;
+  background: rgba(0, 0, 0, 0.1);
+  height: 100%;
+
+  i {
+    font-size: 100px;
+    display: block;
   }
 }
 
