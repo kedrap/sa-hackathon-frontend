@@ -1,6 +1,6 @@
 {
-  "name": "myApp",
-  "app_id": "",
+  "name": "newser.no",
+  "app_id": "950bb0e1",
   "gulpStartupTasks": [
     "sass",
     "watch"

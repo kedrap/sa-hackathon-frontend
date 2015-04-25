@@ -11,7 +11,7 @@ angular.module('newser.service', [])
                 }
                 return hash;
             },
-            getUserId: function() {
+            getUserId: function () {
                 return JSON.parse(window.localStorage.newster).uuid;
             },
             idUser: function () {
@@ -28,7 +28,8 @@ angular.module('newser.service', [])
     })
     .factory('DataService', function ($http) {
         var mockData = 'data_v1.json',
-            apiUrl = 'http://backend.mysql5.pl/api/events',
+            urlBase = 'http://backend.mysql5.pl',
+            apiUrl = urlBase + '/api/events',
             service = {
                 fetch: function (callback) {
                     var res = $http({
@@ -37,7 +38,20 @@ angular.module('newser.service', [])
                     }).success(callback || angular.noop);
                 },
                 pushEvent: function (event) {
-                    $http.post(apiUrl, event).success(function (response, status) {
+                    $http({
+                        url: apiUrl,
+                        method: 'POST',
+                        data: event,
+                        transformRequest: function(obj) {
+                            var str = [];
+                            for(var p in obj)
+                                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                            return str.join("&");
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    }).success(function (response, status) {
                         console.log(arguments, 'data sent');
                     }).error(function () {
                         console.log(arguments, 'data error');
