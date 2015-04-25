@@ -47,7 +47,7 @@ angular.module('newser.service', [])
 
         return service;
     })
-    .factory('DataService', function ($http) {
+    .factory('DataService', function ($http, DecisionService) {
         var mockData = 'data_v1.json',
             urlBase = 'http://backend.mysql5.pl',
             apiUrl = urlBase + '/api/events',
@@ -79,12 +79,21 @@ angular.module('newser.service', [])
             },
             getTakeABreakItem = function () {
                 return {
-                    'title': 'Take a break, you asshole'
+                    type: 'take-a-break',
+                    title: 'Take a break!'
                 };
             },
             getReachEndOfInternetItem = function () {
                 return {
-                    'title': 'Reached end of the internet, you asshole'
+                    type: 'end-of-internet',
+                    title: 'Reached end of the internet'
+                }
+            },
+            getCatItem = function () {
+                return {
+                    type: 'cat',
+                    title: 'You are not interested? Look at this sweet cat!',
+                    image: 'http://lorempixel.com/640/480/cats/'
                 }
             },
             callCounter = 0,
@@ -93,6 +102,11 @@ angular.module('newser.service', [])
                     callCounter++;
                     if (callCounter % 10 == 0) {
                         callback(getTakeABreakItem());
+                        return;
+                    }
+
+                    if (DecisionService.isUserNotInterested()) {
+                        callback(getCatItem());
                         return;
                     }
 
@@ -111,17 +125,9 @@ angular.module('newser.service', [])
                     }
                 },
                 pushEvent: function (event) {
-                    var newsterData;
-
-                    try {
-                        newsterData = JSON.parse(window.localStorage.newster);
-                    } catch (e) {
-                        newsterData = {};
+                    if (event.type !== 'article') {
+                        return;
                     }
-
-                    newsterData.alreadyPresentedArticles = newsterData.alreadyPresentedArticles || {};
-                    newsterData.alreadyPresentedArticles[event.hash] = event.hash;
-                    window.localStorage.newster = JSON.stringify(newsterData);
 
                     $http({
                         url: apiUrl,
@@ -145,4 +151,31 @@ angular.module('newser.service', [])
             };
 
         return service;
+    })
+    .factory('DecisionService', function () {
+        var storage = [],
+            save = function (decision) {
+                storage.push(decision);
+            },
+            isUserNotInterested = function () {
+                var threshold = 3;
+
+                var notInterestedCounter = 0;
+                for (var i = storage.length - 1; i >= 0; i--) {
+                    if (storage[i] != 'not interested') {
+                        return false;
+                    }
+
+                    if (++notInterestedCounter >= threshold) {
+                        storage = [];
+                        return true;
+                    }
+                }
+
+                return false;
+            };
+        return {
+            save: save,
+            isUserNotInterested: isUserNotInterested
+        };
     });
