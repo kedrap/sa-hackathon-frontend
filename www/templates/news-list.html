@@ -3,7 +3,7 @@
          on-swipe-left="dislike(item)" on-swipe-right="like(item)">
 
         <ion-content delegate-handle="mainScroll">
-            <img class="full-image" ng-src="{{item.image}}">
+            <img ng-if="item.image" class="full-image" ng-src="{{item.image}}">
 
             <div class="content">
                 <h1>
