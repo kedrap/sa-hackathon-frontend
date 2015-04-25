@@ -93,6 +93,7 @@ angular.module('newser.service', [])
                     callCounter++;
                     if (callCounter % 10 == 0) {
                         callback(getTakeABreakItem());
+                        return;
                     }
 
                     if (items.length === 0) {
@@ -106,7 +107,7 @@ angular.module('newser.service', [])
                             callback(item);
                         });
                     } else {
-                        callback(getUniqueItem());
+                        callback(getUniqueItem() || getReachEndOfInternetItem());
                     }
                 },
                 pushEvent: function (event) {
