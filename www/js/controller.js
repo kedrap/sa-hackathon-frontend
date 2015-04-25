@@ -1,5 +1,5 @@
 angular.module('newser.controller', [])
-    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService, UserService, TimerService, $ionicScrollDelegate) {
+    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService, UserService, TimerService, $ionicScrollDelegate, DecisionService) {
         $scope.items = null;
         $ionicLoading.show();
 
@@ -41,8 +41,11 @@ angular.module('newser.controller', [])
                 user: UserService.getUserId(),
                 decision: 'skip',
                 time: TimerService.getTimeSpentReading(),
-                title: item.title
+                title: item.title,
+                type: item.type || 'article'
             };
+
+            DecisionService.save('skip');
 
             DataService.pushEvent(event);
 
@@ -59,8 +62,11 @@ angular.module('newser.controller', [])
                 user: UserService.getUserId(),
                 decision: 'like',
                 time: TimerService.getTimeSpentReading(),
-                title: item.title
+                title: item.title,
+                type: item.type || 'article'
             };
+
+            DecisionService.save('interested');
 
             DataService.pushEvent(event);
 
@@ -77,8 +83,11 @@ angular.module('newser.controller', [])
                 user: UserService.getUserId(),
                 decision: 'dislike',
                 time: TimerService.getTimeSpentReading(),
-                title: item.title
+                title: item.title,
+                type: item.type || 'article'
             };
+
+            DecisionService.save('not interested');
 
             DataService.pushEvent(event);
 
