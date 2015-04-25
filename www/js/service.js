@@ -31,10 +31,16 @@ angular.module('newser.service', [])
             },
             idUser: function () {
                 if (typeof(window.localStorage) != 'undefined') {
-                    window.localStorage.newster = window.localStorage.newster || {};
-                    window.localStorage.newster = JSON.stringify({
-                        uuid: service.hashCode(new Date().toString())
-                    });
+                    var newsterData;
+
+                    try {
+                        newsterData = JSON.parse(window.localStorage.newster);
+                    } catch (e) {
+                        newsterData = {};
+                    }
+
+                    newsterData.uuid =  service.hashCode(new Date().toString());
+                    window.localStorage.newster = JSON.stringify(newsterData);
                 }
             }
         };
@@ -45,14 +51,77 @@ angular.module('newser.service', [])
         var mockData = 'data_v1.json',
             urlBase = 'http://backend.mysql5.pl',
             apiUrl = urlBase + '/api/events',
+            items = [],
+            getUniqueItem = function () {
+                var newsterData;
+
+                try {
+                    newsterData = JSON.parse(window.localStorage.newster);
+                } catch (e) {
+                    newsterData = {};
+                }
+
+                newsterData.alreadyPresentedArticles = newsterData.alreadyPresentedArticles || {};
+
+                for (var key in items) {
+                    if (Object.keys(newsterData.alreadyPresentedArticles).indexOf(items[key].hash) !== -1) {
+                        delete items[key];
+                    } else {
+                        var item = items[key];
+                        delete items[key];
+
+                        newsterData.alreadyPresentedArticles[item.hash] = item.hash;
+                        window.localStorage.newster = JSON.stringify(newsterData);
+
+                        return item;
+                    }
+                }
+            },
+            getTakeABreakItem = function () {
+                return {
+                    'title': 'Take a break, you asshole'
+                };
+            },
+            getReachEndOfInternetItem = function () {
+                return {
+                    'title': 'Reached end of the internet, you asshole'
+                }
+            },
+            callCounter = 0,
             service = {
-                fetch: function (callback) {
-                    var res = $http({
-                        method: "GET",
-                        url: mockData
-                    }).success(callback || angular.noop);
+                fetchUniqueItem: function (callback) {
+                    callCounter++;
+                    if (callCounter % 10 == 0) {
+                        callback(getTakeABreakItem());
+                    }
+
+                    if (items.length === 0) {
+                        $http({
+                            method: "GET",
+                            url: mockData
+                        }).success(function (response) {
+                            items = response;
+
+                            var item = getUniqueItem() || getReachEndOfInternetItem();
+                            callback(item);
+                        });
+                    } else {
+                        callback(getUniqueItem());
+                    }
                 },
                 pushEvent: function (event) {
+                    var newsterData;
+
+                    try {
+                        newsterData = JSON.parse(window.localStorage.newster);
+                    } catch (e) {
+                        newsterData = {};
+                    }
+
+                    newsterData.alreadyPresentedArticles = newsterData.alreadyPresentedArticles || {};
+                    newsterData.alreadyPresentedArticles[event.hash] = event.hash;
+                    window.localStorage.newster = JSON.stringify(newsterData);
+
                     $http({
                         url: apiUrl,
                         method: 'POST',
