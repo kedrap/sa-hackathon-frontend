@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.myapp249965" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+<widget xmlns:gap   = "http://phonegap.com/ns/1.0" id="io.stpdev.sa.newser" version="1.3.2"
+        xmlns="http://www.w3.org/ns/widgets">
   <name>newser</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Quick way to browse news
     </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+      IoniX
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <preference name="phonegap-version" value="3.7.0" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+  <preference name="orientation" value="portrait" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

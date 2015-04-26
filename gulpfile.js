@@ -27,6 +27,13 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+gulp.task('build-www', ['sass'], function () {
+  var zip = require('gulp-zip');
+  return gulp.src(['www/**', 'config.xml'])
+      .pipe(zip('app.zip'))
+      .pipe(gulp.dest('build'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
 });

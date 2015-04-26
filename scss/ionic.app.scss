@@ -58,9 +58,14 @@ $bar-height: 55px;
     font-family: 'Lato', sans-serif;
     font-size: 16px;
     margin-bottom: 30px;
+    text-transform: uppercase;
   }
 
   &.like {
+    .scroll-content {
+      -webkit-transform: translate(50px, 0);
+      -webkit-transition: all 0.3s;
+    }
     .likeDescription {
       display: block;
       background: rgba($like, 0.33);
@@ -72,6 +77,10 @@ $bar-height: 55px;
   }
 
   &.dislike {
+    .scroll-content {
+      -webkit-transform: translate(-50px, 0);
+      -webkit-transition: all 0.3s;
+    }
     .dislikeDescription {
       display: block;
       background: rgba($dislike, 0.33);
@@ -86,6 +95,11 @@ $bar-height: 55px;
     .skipDescription {
       display: block;
       background: rgba($skip, 0.33);
+
+      .icon {
+        background: none;
+        color: rgba(255, 255, 255, 0.7);
+      }
     }
   }
 }
@@ -110,7 +124,7 @@ $bar-height: 55px;
     position: absolute;
     height: 80px;
     width: 84px;
-    background: url(/img/sprite-main.png) -165px -135px no-repeat;
+    background: url("../img/sprite-main.png") -165px -135px no-repeat;
     background-size: 344px 237px;
   }
 }
@@ -216,16 +230,21 @@ $bar-height: 55px;
   img {
     max-width: 100%;
   }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
 }
 
 .appName {
   margin: 0 auto;
   i {
-    background: url(/img/sprite-main.png) 0 -2px no-repeat;
-    width: 120px;
-    height: 40px;
+    background: url("../img/sprite-main.png") 0 -2px no-repeat;
+    width: 86px;
+    height: 28px;
     display: block;
-    margin: 5px auto;
+    margin: 10px auto;
     background-size: 100%;
   }
   span {
