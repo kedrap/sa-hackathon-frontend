@@ -195,7 +195,7 @@ $bar-height: 55px;
 
 .skipButton, .likeButton, .dislikeButton {
   min-width: 20px;
-  opacity: 0.9;
+  opacity: 1;
   flex: none;
   -webkit-flex: none;
   max-width: 100%;
@@ -222,7 +222,7 @@ $bar-height: 55px;
 .article-body {
   color: #444;
   font-size: 16px;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
 
   h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
@@ -257,4 +257,8 @@ $bar-height: 55px;
   span {
     display: none
   }
+}
+
+.has-footer {
+  bottom: 58px;
 }
