@@ -78,14 +78,14 @@ angular.module('newser.service', [])
             },
             getTakeABreakItem = function () {
                 return {
-                    image: '/img/cup-of-coffee.jpg',
+                    image: 'http://backend.mysql5.pl/cup-of-coffee.jpg ',
                     type: 'take-a-break',
                     title: 'Take a break!'
                 };
             },
             getReachEndOfInternetItem = function () {
                 return {
-                    image: '/img/cup-of-coffee.jpg',
+                    image: 'http://backend.mysql5.pl/cup-of-coffee.jpg ',
                     type: 'end-of-internet',
                     title: 'Reached end of the internet'
                 }
