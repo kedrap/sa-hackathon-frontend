@@ -21,6 +21,10 @@
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
 
+  <platform name="ios" />
+  <platform name="android" />
+  <icon src="icon/ios/icon-60.png" />
+
   <icon gap:platform="ios" height="60" src="icon/ios/icon-60.png" width="60" />
   <icon gap:platform="ios" height="120" src="icon/ios/icon-60@2x.png" width="120" />
 
