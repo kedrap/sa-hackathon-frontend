@@ -153,9 +153,7 @@ angular.module('newser.service', [])
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     }).success(function (response, status) {
-                        console.log(arguments, 'data sent');
                     }).error(function () {
-                        console.log(arguments, 'data error');
                     });
                 }
             };

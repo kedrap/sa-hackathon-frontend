@@ -1,5 +1,5 @@
 angular.module('newser.controller', [])
-    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService, UserService, TimerService, $ionicScrollDelegate, DecisionService) {
+    .controller('NewsListCtrl', function ($scope, $ionicLoading, DataService, UserService, TimerService, $ionicScrollDelegate, DecisionService, $timeout) {
         $scope.items = null;
         $ionicLoading.show();
 
@@ -12,17 +12,23 @@ angular.module('newser.controller', [])
         $scope.fetchItem = function () {
             $ionicLoading.show();
             DataService.fetchUniqueItem(function (item) {
-                $scope.item = item;
+                if ($scope.item) {
+                    $scope.item.image = null;
+                }
 
-                TimerService.startTimer();
+                $timeout(function () {
+                    $scope.item = item;
 
-                $scope.scrollTop();
-                $ionicLoading.hide();
+                    TimerService.startTimer();
+
+                    $scope.scrollTop();
+                    $ionicLoading.hide();
+                }, 0);
             });
         };
 
         var nextItem = function () {
-            setTimeout(function () {
+            $timeout(function () {
                 $scope.$apply(
                     function () {
                         $scope.fetchItem();
