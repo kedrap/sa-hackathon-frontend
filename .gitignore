@@ -9,3 +9,4 @@ www/lib
 www/css
 npm-debug.log
 www/config.xml
+build/

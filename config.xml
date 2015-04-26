@@ -4,7 +4,7 @@
         xmlns="http://www.w3.org/ns/widgets">
   <name>newser</name>
   <description>
-        Quick way to browse news
+        News reinvented
     </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
       IoniX
@@ -20,4 +20,23 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+
+  <icon gap:platform="ios" height="60" src="icon/ios/icon-60.png" width="60" />
+  <icon gap:platform="ios" height="120" src="icon/ios/icon-60@2x.png" width="120" />
+
+  <icon gap:platform="ios" height="72" src="icon/ios/icon-72.png" width="72" />
+  <icon gap:platform="ios" height="144" src="icon/ios/icon-72@2x.png" width="144" />
+
+  <icon gap:platform="ios" height="57" src="icon/ios/Icon.png" width="57" />
+  <icon gap:platform="ios" height="144" src="icon/ios/Icon@2x.png" width="144" />
+
+  <icon gap:platform="ios" height="50" src="icon/ios/Icon-Small-50.png" width="50" />
+  <icon gap:platform="ios" height="100" src="icon/ios/Icon-Small-50@2x.png" width="100" />
+
+  <icon src="icon/android/drawable-ldpi/ic_launcher.png" gap:platform="android" gap:density="ldpi" />
+  <icon src="icon/android/drawable-mdpi/ic_launcher.png" gap:platform="android" gap:density="mdpi" />
+  <icon src="icon/android/drawable-hdpi/ic_launcher.png" gap:platform="android" gap:density="hdpi" />
+  <icon src="icon/android/drawable-xhdpi/ic_launcher.png" gap:platform="android" gap:density="xhdpi" />
+  <icon src="icon/android/drawable-xxhdpi/ic_launcher.png" gap:platform="android" gap:density="xxhdpi" />
+  <icon src="icon/android/drawable-xxxhdpi/ic_launcher.png" gap:platform="android" gap:density="xxxhdpi" />
 </widget>
