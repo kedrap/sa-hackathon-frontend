@@ -69,7 +69,7 @@ angular.module('newser.service', [])
                         var item = items[key];
                         delete items[key];
 
-                        newsterData.alreadyPresentedArticles[item.hash] = item.hash;
+                        newsterData.alreadyPresentedArticles[item.hash] = 1;
                         window.localStorage.newster = JSON.stringify(newsterData);
 
                         return item;
